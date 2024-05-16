@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .models import Customer
 
 # Create your views here.
 def home(request):
+    customers = Customer.objects.all()
+    
     #check to see if logging in 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -18,7 +21,7 @@ def home(request):
             messages.success(request, "An error occured, please try again!!....")
             return redirect('home')
     else:   
-        return render(request, 'home.html', {})
+        return render(request, 'home.html', {'customers': customers})
 
 def login_user(request):
     pass

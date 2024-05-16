@@ -1,12 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<div class="col-md-6 offset-md-3">
-
     {% if user.is_authenticated %}
-
-    <h1>hello world</h1>
+    <h1>Order Details</h1>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Customer#</th>
+            <th scope="col">Order#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Email</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% if customers %}
+            {% for customer in customers %}
+            <tr>
+                <td>{{customer.customer_num}}</td>
+                <td>{{customer.order_num}}</td>
+                <td>{{customer.first_name}}{{custome.last_name}}</td>
+                <td>{{customer.contact}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.created_at}}</td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+          <tr>
+          </tr>
+        </tbody>
+      </table>
 
     {% else %}
    
@@ -32,5 +56,4 @@
           </form>
     </form>
     {% endif %}
-</div>
 {% endblock %}
