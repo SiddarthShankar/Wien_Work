@@ -18,9 +18,9 @@
         {% if customers %}
             {% for customer in customers %}
             <tr>
-                <td>{{customer.customer_num}}</td>
-                <td>{{customer.order_num}}</td>
-                <td>{{customer.first_name}}{{custome.last_name}}</td>
+                <td><a href="{% url 'customer' customer.id %}">{{customer.customer_num}}</a></td>
+                <td><a href="{% url 'order' customer.id %}">{{customer.order_num}}</a></td>
+                <td>{{customer.first_name}} {{customer.last_name}}</td>
                 <td>{{customer.contact}}</td>
                 <td>{{customer.email}}</td>
                 <td>{{customer.created_at}}</td>
@@ -33,7 +33,7 @@
       </table>
 
     {% else %}
-   
+    <div class="col-md-6 offset-md-3">
     <h1>Login</h1>
     <br/>
     
@@ -54,6 +54,7 @@
             <br/>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
+    </div>
     </form>
     {% endif %}
 {% endblock %}

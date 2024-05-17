@@ -30,3 +30,20 @@ def logout_user(request):
     logout(request)
     messages.success(request, "You have been successfully Logged Out!!....")
     return redirect('home')
+
+def customer_order(request, pk):
+    if request.user.is_authenticated:
+        #look up records
+        customer_order = Customer.objects.get(id=pk)
+        return render(request, 'order.html', {'customer_order':customer_order})
+    else:
+        messages.success(request, "You must be logged into access the data")
+        return redirect('home')
+
+def customer_num(request, pk):
+    if request.user.is_authenticated:
+        customer_num = Customer.objects.get(id=pk)
+        return render(request, 'customer.html', {'customer_num':customer_num})
+    else:
+        messages.success(request, "You must be logged into access the data")
+        return redirect('home') 
