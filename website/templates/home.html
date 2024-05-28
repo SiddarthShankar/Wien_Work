@@ -3,8 +3,8 @@
 {% block content %}
     {% if user.is_authenticated %}
     <h1>Order Details</h1>
+    {% include 'status.html' %}
     <form method="get">
-      {{ myFilter.form }}
       <button class="btn btn-primary" type="submit">Search</button>
     </form>
     <table class="table table-bordered table-hover">
@@ -13,9 +13,8 @@
             <th scope="col">Customer#</th>
             <th scope="col">Order#</th>
             <th scope="col">Name</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Email</th>
             <th scope="col">Date</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -25,8 +24,6 @@
                 <td><a href="{% url 'customer' customer.id %}">{{customer.customer_num}}</a></td>
                 <td><a href="{% url 'order' customer.id %}">{{customer.order_num}}</a></td>
                 <td>{{customer.first_name}} {{customer.last_name}}</td>
-                <td>{{customer.contact}}</td>
-                <td>{{customer.email}}</td>
                 <td>{{customer.created_at}}</td>
             </tr>
             {% endfor %}

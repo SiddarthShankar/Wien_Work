@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
 <h1>About</h1>
 <br/>
@@ -11,7 +13,7 @@
     </div>
     <div class="col">
         <div class="rightside">
-            <img src="/Images/inclusivity.webp" alt="Image 1" class="image">
+            <img src="{% static 'Images/inclusivity.webp' %}" height="400" alt="Image 1">
         </div>
     </div>
 </div>

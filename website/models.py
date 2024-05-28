@@ -3,13 +3,24 @@ from django.db import models
 # Create your models here.
 class Customer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    order_num = models.IntegerField()
     customer_num = models.IntegerField()
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.CharField(max_length=100)
-    contact = models.CharField(max_length=15)
+    order_num = models.IntegerField()
+    first_name = models.CharField(max_length=50, null=True)
+    last_name = models.CharField(max_length=50, null=True)
+    email = models.CharField(max_length=100, null=True, blank=True)
+    contact = models.CharField(max_length=15, null=True)
     
     def __str__(self):
-        return(f"Customer {self.first_name} {self.last_name} with order number {self.order_num}")
-    
+        return(f"{self.first_name} {self.last_name}")
+
+class Order(models.Model):
+    STATUS = (
+            ('Pending', 'Pending'),
+            ('Ready for dispatch', 'Ready for dispatch'),
+            ('Out for delivery', 'Out for delivery'),
+            ('Delivered', 'Delivered'),
+    )
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    description = models.CharField(max_length=1000, null=True, blank=True)
+    status = models.CharField(max_length=200, null=True, choices=STATUS)

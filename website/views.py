@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import AddRecordForm
 from .models import Customer
-from .filters import OrderFilter
+#from .filters import OrderFilter
 
 # Create your views here.
 def home(request):
@@ -37,10 +37,7 @@ def customer_order(request, pk):
     if request.user.is_authenticated:
         #look up records
         customer_order = Customer.objects.get(id=pk)
-        
-        myFilters = OrderFilter(request.get)
-        
-        return render(request, 'order.html', {'customer_order':customer_order, 'myFilters': myFilters})
+        return render(request, 'order.html', {'customer_order':customer_order})
     else:
         messages.success(request, "You must be logged into access the data")
         return redirect('home')
