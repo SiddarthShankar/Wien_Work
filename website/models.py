@@ -12,3 +12,4 @@ class Customer(models.Model):
     
     def __str__(self):
         return(f"Customer {self.first_name} {self.last_name} with order number {self.order_num}")
+    

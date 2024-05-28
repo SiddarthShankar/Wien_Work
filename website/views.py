@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import AddRecordForm
 from .models import Customer
+from .filters import OrderFilter
 
 # Create your views here.
 def home(request):
@@ -36,7 +37,10 @@ def customer_order(request, pk):
     if request.user.is_authenticated:
         #look up records
         customer_order = Customer.objects.get(id=pk)
-        return render(request, 'order.html', {'customer_order':customer_order})
+        
+        myFilters = OrderFilter(request.get)
+        
+        return render(request, 'order.html', {'customer_order':customer_order, 'myFilters': myFilters})
     else:
         messages.success(request, "You must be logged into access the data")
         return redirect('home')
@@ -81,6 +85,13 @@ def update_details(request, pk):
             messages.success(request, "Details have been Updated successfully!!..")
             return redirect('home') 
         return render(request, 'update_details.html', {'customer_form':customer_form})
+    else:
+        messages.success(request, "You must be logged into access the data")
+        return redirect('home') 
+    
+def about(request):
+    if request.user.is_authenticated:
+        return render(request, 'about.html', {'about':about})
     else:
         messages.success(request, "You must be logged into access the data")
         return redirect('home') 
