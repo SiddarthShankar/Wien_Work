@@ -12,3 +12,10 @@
     #orders-pending{
     background-color: #477b85;
     }
+
+.box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}

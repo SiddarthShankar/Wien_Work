@@ -3,7 +3,7 @@
 {% block content %}
     <h1 class="text-center">Customer Orders</h1>
     <div class="box">
-        <h5>Customer: {{ customer_order.first_name }} {{ customer_order.last_name }}</h5>
+        <h5>Customer: {{ customer_order.first_name }} {{ customer_order.last_name }}</h5><br/>
     </div>
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
@@ -29,11 +29,4 @@
     </table>
 {% endblock %}
 
-<style>
-.box {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
-</style>
+
