@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Customer Details</h1>
+<h1 class="text-center">Customer Details</h1>
 <br/>
 
 <div class="card" style="width: 18rem;">
@@ -11,6 +11,6 @@
   </div>
   <br/>
   <a href="{% url 'home' %}" class="btn btn-primary"> Home </a>
-  <a href="{% url 'delete_details' customer_num.id %}" class="btn btn-danger"> Delete </a>
-  <a href="{% url 'update_details' customer_num.id %}" class="btn btn-primary"> Update Record </a>
+  <a href="{% url 'delete_CustomerDetails' customer_num.id %}" class="btn btn-danger"> Delete </a>
+  <a href="{% url 'update_CustomerDetails' customer_num.id %}" class="btn btn-primary"> Update Record </a>
 {% endblock %}

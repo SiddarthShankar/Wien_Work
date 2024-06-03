@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms 
-from .models import Customer
+from .models import *
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label='', widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
@@ -30,8 +30,8 @@ def __init__(self, *args, **kwargs):
     self.fields['password2'].label = ''
     self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'	
 
-# Create Add Record Form
-class AddRecordForm(forms.ModelForm):
+# Create Add Customer Record Form
+class AddCustomerRecordForm(forms.ModelForm):
     order_num = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Order Number", "class": "form-control"}), label="")
     customer_num = forms.IntegerField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Customer Number", "class": "form-control"}),label="")
     first_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class": "form-control"}),label="")
@@ -42,3 +42,21 @@ class AddRecordForm(forms.ModelForm):
     class Meta:
         model = Customer
         exclude = ("user",)
+
+# Create Add Record Form
+class AddOrderRecordForm(forms.ModelForm):
+    order_num = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Order Number", "class": "form-control"}), label="")
+    customer_num = forms.IntegerField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Customer Number", "class": "form-control"}),label="")
+    first_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class": "form-control"}),label="")
+    last_name = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Last Name", "class": "form-control"}),label="")
+    email = forms.EmailField(required=True,widget=forms.widgets.EmailInput(attrs={"placeholder": "Email", "class": "form-control"}),label="")
+    contact = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Contact", "class": "form-control"}),label="")
+
+    class Meta:
+        model = Order
+        exclude = ("user",)
+        
+class OrderStatusForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['status',]

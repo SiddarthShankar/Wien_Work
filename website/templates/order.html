@@ -1,7 +1,39 @@
 {% extends 'base.html' %}
-{% block content %}
-<h1>Customer Orders</h1>
-<br/>
-{{ customer_order }}
 
+{% block content %}
+    <h1 class="text-center">Customer Orders</h1>
+    <div class="box">
+        <h5>Customer: {{ customer_order.first_name }} {{ customer_order.last_name }}</h5>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Order#</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            {% if order.customer_id == customer_order %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.description }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.created_at }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
+
+<style>
+.box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+</style>

@@ -2,7 +2,7 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-    <h1>Order Details</h1>
+    <h1 class="text-center">Order Details</h1>
     {% include 'status.html' %}
     <form method="get">
       <button class="btn btn-primary" type="submit">Search</button>
@@ -22,7 +22,7 @@
             {% for customer in customers %}
             <tr>
                 <td><a href="{% url 'customer' customer.id %}">{{customer.customer_num}}</a></td>
-                <td><a href="{% url 'order' customer.id %}">{{customer.order_num}}</a></td>
+                <td><a href="{% url 'customer_order' customer.id %}">{{customer.order_num}}</a></td>
                 <td>{{customer.first_name}} {{customer.last_name}}</td>
                 <td>{{customer.created_at}}</td>
             </tr>
