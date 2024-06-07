@@ -47,14 +47,13 @@ class AddCustomerRecordForm(forms.ModelForm):
 class AddOrderRecordForm(forms.ModelForm):
     order_num = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Order Number", "class": "form-control"}), label="")
     customer_num = forms.IntegerField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Customer Number", "class": "form-control"}),label="")
-    first_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class": "form-control"}),label="")
-    last_name = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Last Name", "class": "form-control"}),label="")
-    email = forms.EmailField(required=True,widget=forms.widgets.EmailInput(attrs={"placeholder": "Email", "class": "form-control"}),label="")
-    contact = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Contact", "class": "form-control"}),label="")
-
+    desciption = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Description", "class": "form-control"}),label="")
+    status = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Status", "class": "form-control"}),label="")
+    
     class Meta:
         model = Order
-        exclude = ("user",)
+
+        fields = '__all__'
         
 class OrderStatusForm(forms.ModelForm):
     class Meta:

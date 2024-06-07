@@ -2,12 +2,12 @@
 {% block content %}
 
 <div class="col-md-6 offset-md-3">
-<h1 class="text-center"> Add Details</h1>
-<br/>
-    
-<form method="POST" action="{% url 'add_CustomerDetails' %}">
+    <h1 class="text-center"> Add Order Details</h1>
+    <br/>
+
+<form action="{% url 'add_OrderDetails' %}" method="POST">
     {% csrf_token %}
-    {{ customer_form.as_p }} <br/>
+    {{ order_form.as_p }} <br/>
     <button type="submit" class="btn btn-primary">Add Details</button>
 </form>
 </div>

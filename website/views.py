@@ -1,14 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import AddCustomerRecordForm, OrderStatusForm
+from .forms import AddCustomerRecordForm, AddOrderRecordForm, OrderStatusForm
 from .models import Customer, Order
 
 #from .filters import OrderFilter
 
 # Create your views here.
 def home(request):
+    orders = Order.objects.all()
     customers = Customer.objects.all()
+    
+    total_orders = orders.count()
+    delivered = orders.filter(status='Delivered').count()
+    pending = orders.filter(status='Pending').count()
+    
+    context = {'orders': orders, 'customers': customers, 'total_orders': total_orders, 'delivered': delivered, 'pending': pending}
+    
     #check to see if logging in 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -23,7 +31,7 @@ def home(request):
             messages.success(request, "An error occured, please try again!!....")
             return redirect('home')
     else:   
-        return render(request, 'home.html', {'customers': customers})
+        return render(request, 'home.html', context)
 
 def login_user(request):
     pass
@@ -38,6 +46,7 @@ def customer_order(request, pk):
         # Look up records
         orders = Order.objects.all()
         customer_order = Customer.objects.get(id=pk)
+        
         # Merge the two dictionaries into one
         context = {
             'customer_order': customer_order,
@@ -98,7 +107,43 @@ def update_CustomerDetails(request, pk):
 #       return render(request, 'order.html', {'orders': orders})
 #   else:
 #       messages.success(request, "You must be logged into access the data")
-#       return redirect('home')        
+#       return redirect('home') 
+
+def delete_OrderDetails(request, pk):
+    if request.user.is_authenticated:
+        delete_detail = Order.objects.get(id=pk)
+        delete_detail.delete()
+        messages.success(request, "Details have been deleted successfully!!..")
+        return redirect('home') 
+    else:
+        messages.success(request, "You must be logged into access the data")
+        return redirect('home') 
+
+def add_OrderDetails(request):
+    order_form = AddOrderRecordForm(request.POST or None) 
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if order_form.is_valid():
+                order_form.save()
+                messages.success(request, "Details added successfully!!...")
+                return redirect('/')
+        return render(request, 'add_OrderDetails.html', {'order_form':order_form})
+    else:
+        messages.success(request, "You must be logged in to add a form")
+        return redirect('home') 
+    
+def update_OrderDetails(request, pk):
+    if request.user.is_authenticated:
+        current_detail = Order.objects.get(id=pk)
+        order_form = AddOrderRecordForm(request.POST or None, instance=current_detail)
+        if order_form.is_valid():
+            order_form.save() 
+            messages.success(request, "Details have been Updated successfully!!..")
+            return redirect('/') 
+        return render(request, 'update_CustomerDetails.html', {'order_form':order_form})
+    else:
+        messages.success(request, "You must be logged into access the data")
+        return redirect('home')        
     
 def about(request):
     if request.user.is_authenticated:
