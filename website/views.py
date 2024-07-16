@@ -60,7 +60,12 @@ def customer_order(request, pk):
 def customer_num(request, pk):
     if request.user.is_authenticated:
         customer_num = Customer.objects.get(id=pk)
-        return render(request, 'customer.html', {'customer_num':customer_num})
+        order_Details = Order.objects.all()
+        context = {
+            'customer_num':customer_num,
+            'order_Details': order_Details,
+        }
+        return render(request, 'customer.html', context)
     else:
         messages.success(request, "You must be logged into access the data")
         return redirect('home') 
@@ -150,4 +155,20 @@ def about(request):
         return render(request, 'about.html', {'about':about})
     else:
         messages.success(request, "You must be logged into access the data")
+        return redirect('home') 
+    
+def order_Details(request, pk):
+    if request.user.is_authenticated:
+        # Look up records
+        order_Details = Order.objects.get(id=pk)
+        customer_order = Customer.objects.get(id=pk)
+        
+               # Merge the two dictionaries into one
+        context = {
+            'customer_order': customer_order,
+            'order_Details': order_Details,
+        }
+        return render(request, 'order_Details.html', context)
+    else:
+        messages.success(request, "You must be logged in to view this order")
         return redirect('home') 

@@ -13,4 +13,27 @@
   <a href="{% url 'home' %}" class="btn btn-primary"> Home </a>
   <a href="{% url 'delete_CustomerDetails' customer_num.id %}" class="btn btn-danger"> Delete </a>
   <a href="{% url 'update_CustomerDetails' customer_num.id %}" class="btn btn-primary"> Update Record </a>
+  <br/>
+  
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Order#</th>
+        <th scope="col">Status</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for order_Detail in order_Details %}
+        {% if order_Detail.id == order_Detail %}
+        <tr>
+            <td><a href="{% url 'order_Details' order.id%}">{{ order_Detail.id }}</a></td>
+            <td><a class="btn btn-sm btn-info" href="">{{ order_Detail.status }}</a></td>
+            <td>{{ order_Detail.created_at }}</td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+  
 {% endblock %}
