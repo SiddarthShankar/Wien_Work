@@ -4,27 +4,26 @@
 <br/>
 
 <div class="box">
-    <h3>Customer: {{ customer_order.first_name }} {{ customer_order.last_name }}</h3>
-    <a class="btn btn-primary btn-sm-block" href="{% url 'add_OrderDetails'%}">Add Order</a>
-    <a class="btn btn-danger btn-sm-block" href="{% url 'delete_OrderDetails' order.id %}">Delete Order</a>
-    <a class="btn btn-secondary btn-sm-block" href="{% url 'update_OrderDetails'%}">Update Order</a>
+    <h3>Customer: {{ customer.first_name }} {{ customer.last_name }}</h3>
+    
     <br/>
-        
-    </div>
-    <br/>
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark">
-          <tr>
+</div>
+<br/>
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
             <th scope="col">Description</th>
             <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ order_Details.description }}</td>
-                <td><a class="btn btn-sm btn-info" href="">{{ order_Details.status }}</a></td>
-            </tr>
-        </tbody>
-    </table>
-    
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ orders.description }}</td>
+            <td>{{ orders.status }}</td>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}
+
+
+

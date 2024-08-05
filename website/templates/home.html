@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-
 {% block content %}
     {% if user.is_authenticated %}
     <h1 class="text-center">Order Details</h1>
     {% include 'status.html' %}
     <form method="get">
+      {{myFilters.form}}
       <button class="btn btn-primary" type="submit">Search</button>
     </form>
     <div style="margin-top: 20px;">

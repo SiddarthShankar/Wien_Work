@@ -1,35 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1 class="text-center">Customer Orders</h1>
-
-    <br/>
+<h1 class="text-center">Customer Orders</h1>
+<br/>
 
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title"><strong>{{ customer_num.first_name }} {{ customer_num.last_name }}</strong></h5>
-      <p class="card-text">{{ customer_num.contact }}<br/>{{ customer_num.email }}<br/></p>
+        <h5 class="card-title"><strong>{{ customer_num.first_name }} {{ customer_num.last_name }}</strong></h5>
+        <p class="card-text">{{ customer_num.contact }}<br/>{{ customer_num.email }}<br/></p>
     </div>
 </div>
 <br/>
-<a href="{% url 'home' %}" class="btn btn-primary"> Home </a>
 
-<br/>
+<form method="get">
+  {{myFilters.form}}
+  <button class="btn btn-primary" type="submit">Search</button>
+</form>
 
 <div style="margin-top: 20px;">
 <table class="table table-bordered table-hover">
     <thead class="table-dark">
-      <tr>
-        <th scope="col">Order#</th>
-        <th scope="col">Status</th>
-        <th scope="col">Date</th>
-      </tr>
+        <tr>
+            <th scope="col">Order#</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date</th>
+            <th scope="col">Actions</th>
+        </tr>
     </thead>
     <tbody>
     {% for order_Detail in order_Details %}
         <tr>
             <td><a href="{% url 'order_Details' order_Detail.id %}">{{ order_Detail.id }}</a></td>
-            <td><a class="btn btn-sm btn-info" href="">{{ order_Detail.status }}</a></td>
+            <td>{{ order_Detail.status }}</td>
             <td>{{ order_Detail.created_at }}</td>
+            <td>
+                <form method="post" action="{% url 'update_order_status' order_Detail.id %}">
+                    {% csrf_token %}
+                    {{ order_Detail.status_form.status }}
+                    <button type="submit" class="btn btn-sm btn-info">Update</button>
+                </form>
+            </td>
         </tr>
     {% endfor %}
     </tbody>
@@ -37,5 +46,3 @@
 </div>
 
 {% endblock %}
-
-

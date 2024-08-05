@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import AddCustomerRecordForm, AddOrderRecordForm, OrderStatusForm
 from .models import Customer, Order
+from .filters import OrderFilter, CustomerFilter
 
 #from .filters import OrderFilter
 
@@ -11,11 +12,14 @@ def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
     
+    myFilters = CustomerFilter(request.GET, queryset=customers)
+    customers = myFilters.qs
+    
     total_orders = orders.count()
     delivered = orders.filter(status='Delivered').count()
     pending = orders.filter(status='Pending').count()
     
-    context = {'orders': orders, 'customers': customers, 'total_orders': total_orders, 'delivered': delivered, 'pending': pending}
+    context = {'orders': orders, 'customers': customers, 'total_orders': total_orders, 'delivered': delivered, 'pending': pending, 'myFilters': myFilters}
     
     #check to see if logging in 
     if request.method == 'POST':
@@ -48,11 +52,16 @@ def customer_order(request, pk):
         customer_order = Customer.objects.get(id=pk)
         customer_num = Customer.objects.get(id=pk)
         order_Details = Order.objects.filter(customer_id=pk)
+        
+        myFilters = OrderFilter(request.GET, queryset=orders)
+        orders = myFilters.qs
+        
         context = {
             'customer_num':customer_num,
             'order_Details': order_Details,
             'customer_order': customer_order,
             'orders': orders,
+            'myFilters': myFilters
         }
         return render(request, 'order.html', context)
     else:
@@ -163,15 +172,29 @@ def about(request):
 def order_Details(request, pk):
     if request.user.is_authenticated:
         # Look up records
-        order_Details = Order.objects.get(id=pk)
-        customer_order = Customer.objects.get(id=pk)
-        
-               # Merge the two dictionaries into one
+        orders = get_object_or_404(Order, id=pk)
+        customer = orders.customer_id  # Correct attribute name
         context = {
-            'customer_order': customer_order,
-            'order_Details': order_Details,
+            'customer': customer,
+            'orders': orders,
         }
         return render(request, 'order_Details.html', context)
     else:
         messages.success(request, "You must be logged in to view this order")
         return redirect('home') 
+    
+def update_order_status(request, pk):
+    if request.user.is_authenticated:
+        order = get_object_or_404(Order, id=pk)
+        if request.method == 'POST':
+            form = OrderStatusForm(request.POST, instance=order)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Order status updated successfully!")
+            else:
+                messages.error(request, "Failed to update order status. Please try again.")
+        return redirect('customer_order', pk=order.customer_id.id)
+    else:
+        messages.error(request, "You must be logged in to update the order status")
+        return redirect('home')
+    

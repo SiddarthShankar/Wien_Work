@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django import forms 
 from .models import *
 
+
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label='', widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
     first_name = forms.CharField(label='', max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'First Name'}))
@@ -52,10 +53,12 @@ class AddOrderRecordForm(forms.ModelForm):
     
     class Meta:
         model = Order
-
         fields = '__all__'
         
 class OrderStatusForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['status',]
+        widgets = {
+            'status': forms.Select(attrs={'class': 'form-control'}),
+        }
