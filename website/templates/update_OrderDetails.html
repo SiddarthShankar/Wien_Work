@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+<h1 class="text-center">Update Details</h1>
+<br/>
+    
+<form method="POST">
+    {% csrf_token %}
+    {{ order_form.as_p }} <br/>
+    <button type="submit" class="btn btn-primary">Update Order Details</button>
+</form>
+</div>
+{% endblock %}

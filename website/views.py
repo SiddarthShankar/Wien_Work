@@ -117,24 +117,15 @@ def update_CustomerDetails(request, pk):
         messages.success(request, "You must be logged into access the data")
         return redirect('home') 
 
-#def order(request):
-#    if request.user.is_authenticated:
-#       orders = Order.objects.all()
-#       return render(request, 'order.html', {'orders': orders})
-#   else:
-#       messages.success(request, "You must be logged into access the data")
-#       return redirect('home') 
-
 def delete_OrderDetails(request, pk):
     if request.user.is_authenticated:
-        delete_order = Order.objects.get(id=pk)
+        delete_order = get_object_or_404(Order, id=pk)
         delete_order.delete()
         messages.success(request, "Details have been deleted successfully!!..")
         return redirect('home') 
     else:
         messages.success(request, "You must be logged into access the data")
         return redirect('home') 
-
 
 def add_OrderDetails(request):
     order_form = AddOrderRecordForm(request.POST or None) 
@@ -151,16 +142,16 @@ def add_OrderDetails(request):
     
 def update_OrderDetails(request, pk):
     if request.user.is_authenticated:
-        current_detail = Order.objects.get(id=pk)
+        current_detail = get_object_or_404(Order, id=pk)
         order_form = AddOrderRecordForm(request.POST or None, instance=current_detail)
         if order_form.is_valid():
             order_form.save() 
             messages.success(request, "Details have been Updated successfully!!..")
             return redirect('/') 
-        return render(request, 'update_CustomerDetails.html', {'order_form':order_form})
+        return render(request, 'update_OrderDetails.html', {'order_form':order_form})
     else:
         messages.success(request, "You must be logged into access the data")
-        return redirect('home')        
+        return redirect('home')      
     
 def about(request):
     if request.user.is_authenticated:
