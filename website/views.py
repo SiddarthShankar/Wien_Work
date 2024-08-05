@@ -46,9 +46,11 @@ def customer_order(request, pk):
         # Look up records
         orders = Order.objects.all()
         customer_order = Customer.objects.get(id=pk)
-        
-        # Merge the two dictionaries into one
+        customer_num = Customer.objects.get(id=pk)
+        order_Details = Order.objects.filter(customer_id=pk)
         context = {
+            'customer_num':customer_num,
+            'order_Details': order_Details,
             'customer_order': customer_order,
             'orders': orders,
         }
@@ -60,7 +62,7 @@ def customer_order(request, pk):
 def customer_num(request, pk):
     if request.user.is_authenticated:
         customer_num = Customer.objects.get(id=pk)
-        order_Details = Order.objects.all()
+        order_Details = Order.objects.filter(customer_id=pk)
         context = {
             'customer_num':customer_num,
             'order_Details': order_Details,
@@ -69,7 +71,7 @@ def customer_num(request, pk):
     else:
         messages.success(request, "You must be logged into access the data")
         return redirect('home') 
-    
+   
 def delete_CustomerDetails(request, pk):
     if request.user.is_authenticated:
         delete_detail = Customer.objects.get(id=pk)
@@ -116,13 +118,14 @@ def update_CustomerDetails(request, pk):
 
 def delete_OrderDetails(request, pk):
     if request.user.is_authenticated:
-        delete_detail = Order.objects.get(id=pk)
-        delete_detail.delete()
+        delete_order = Order.objects.get(id=pk)
+        delete_order.delete()
         messages.success(request, "Details have been deleted successfully!!..")
         return redirect('home') 
     else:
         messages.success(request, "You must be logged into access the data")
         return redirect('home') 
+
 
 def add_OrderDetails(request):
     order_form = AddOrderRecordForm(request.POST or None) 

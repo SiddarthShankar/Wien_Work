@@ -5,17 +5,18 @@
 
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title"><strong>{{customer_num.first_name}} {{customer_num.last_name}}</strong></h5>
-      <p class="card-text">{{customer_num.contact}}<br/>{{customer_num.email}}<br/></p>
+      <h5 class="card-title"><strong>{{ customer_num.first_name }} {{ customer_num.last_name }}</strong></h5>
+      <p class="card-text">{{ customer_num.contact }}<br/>{{ customer_num.email }}<br/></p>
     </div>
-  </div>
-  <br/>
-  <a href="{% url 'home' %}" class="btn btn-primary"> Home </a>
-  <a href="{% url 'delete_CustomerDetails' customer_num.id %}" class="btn btn-danger"> Delete </a>
-  <a href="{% url 'update_CustomerDetails' customer_num.id %}" class="btn btn-primary"> Update Record </a>
-  <br/>
-  
-  <table class="table table-bordered table-hover">
+</div>
+<br/>
+<a href="{% url 'home' %}" class="btn btn-primary"> Home </a>
+<a href="{% url 'delete_CustomerDetails' customer_num.id %}" class="btn btn-danger"> Delete </a>
+<a href="{% url 'update_CustomerDetails' customer_num.id %}" class="btn btn-primary"> Update Record </a>
+<br/>
+
+<div style="margin-top: 20px;">
+<table class="table table-bordered table-hover">
     <thead class="table-dark">
       <tr>
         <th scope="col">Order#</th>
@@ -25,15 +26,14 @@
     </thead>
     <tbody>
     {% for order_Detail in order_Details %}
-        {% if order_Detail.id == order_Detail %}
         <tr>
-            <td><a href="{% url 'order_Details' order.id%}">{{ order_Detail.id }}</a></td>
+            <td><a href="{% url 'order_Details' order_Detail.id %}">{{ order_Detail.id }}</a></td>
             <td><a class="btn btn-sm btn-info" href="">{{ order_Detail.status }}</a></td>
             <td>{{ order_Detail.created_at }}</td>
         </tr>
-        {% endif %}
     {% endfor %}
     </tbody>
 </table>
-  
+</div>
+
 {% endblock %}

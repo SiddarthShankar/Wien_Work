@@ -7,11 +7,11 @@
     <form method="get">
       <button class="btn btn-primary" type="submit">Search</button>
     </form>
+    <div style="margin-top: 20px;">
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
           <tr>
             <th scope="col">Customer#</th>
-            <th scope="col">Order#</th>
             <th scope="col">Name</th>
             <th scope="col">Date</th>
           </tr>
@@ -20,8 +20,7 @@
         {% if customers %}
             {% for customer in customers %}
             <tr>
-                <td><a href="{% url 'customer' customer.id %}">{{customer.customer_num}}</a></td>
-                <td><a href="{% url 'customer_order' customer.id %}">{{customer.order_num}}</a></td>
+                <td><a href="{% url 'customer_order' customer.id %}">{{customer.customer_num}}</a></td>
                 <td>{{customer.first_name}} {{customer.last_name}}</td>
                 <td>{{customer.created_at}}</td>
             </tr>

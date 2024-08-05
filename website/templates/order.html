@@ -1,30 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1 class="text-center">Customer Orders</h1>
-    <div class="box">
-        <h3>Customer: {{ customer_order.first_name }} {{ customer_order.last_name }}</h3>  
-    </div>
+
     <br/>
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">Order#</th>
-            <th scope="col">Status</th>
-            <th scope="col">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for order in orders %}
-            {% if order.customer_id == customer_order %}
-            <tr>
-                <td><a href="{% url 'order_Details' order.id%}">{{ order.id }}</a></td>
-                <td><a class="btn btn-sm btn-info" href="">{{ order.status }}</a></td>
-                <td>{{ order.created_at }}</td>
-            </tr>
-            {% endif %}
-        {% endfor %}
-        </tbody>
-    </table>
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><strong>{{ customer_num.first_name }} {{ customer_num.last_name }}</strong></h5>
+      <p class="card-text">{{ customer_num.contact }}<br/>{{ customer_num.email }}<br/></p>
+    </div>
+</div>
+<br/>
+<a href="{% url 'home' %}" class="btn btn-primary"> Home </a>
+
+<br/>
+
+<div style="margin-top: 20px;">
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Order#</th>
+        <th scope="col">Status</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for order_Detail in order_Details %}
+        <tr>
+            <td><a href="{% url 'order_Details' order_Detail.id %}">{{ order_Detail.id }}</a></td>
+            <td><a class="btn btn-sm btn-info" href="">{{ order_Detail.status }}</a></td>
+            <td>{{ order_Detail.created_at }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
 {% endblock %}
 
 
