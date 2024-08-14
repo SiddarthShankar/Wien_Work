@@ -21,6 +21,15 @@ def home(request):
     
     context = {'orders': orders, 'customers': customers, 'total_orders': total_orders, 'delivered': delivered, 'pending': pending, 'myFilters': myFilters}
     
+    if request.method == 'GET' and 'order_id' in request.GET:
+        order_id = request.GET.get('order_id')
+        if order_id:
+            try:
+                order = Order.objects.get(id=order_id)
+                return redirect('order_Details', pk=order.id)
+            except Order.DoesNotExist:
+                messages.error(request, "Order not found!")
+    
     #check to see if logging in 
     if request.method == 'POST':
         username = request.POST.get('username')

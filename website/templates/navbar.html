@@ -32,7 +32,11 @@
                 <a href="{% url 'increase_font_size' %}" class="btn btn-outline-light me-2">A+</a>
                 <a href="{% url 'decrease_font_size' %}" class="btn btn-outline-light me-4">A-</a>
             </div>
-            <button id="speakButton" class="btn btn-outline-light ">Speak</button>
+            <button id="speakButton" class="btn btn-outline-light me-2">Speak</button>
+            <form method="GET" action="{% url 'home' %}" class="d-flex">
+                <input type="text" name="order_id" class="form-control me-2" placeholder="Search Order ID" style="max-width: 300px;">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
         </div>
     </div>
 </nav>
