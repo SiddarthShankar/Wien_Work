@@ -1,43 +1,44 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+    <script src="{% static 'js/voice-prompts.js' %}" defer></script>
+    <h1 class="text-center">Customer Orders</h1>
+    <br/>
 
-<h1 class="text-center">Customer Orders</h1>
-<br/>
-
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title"><strong>{{ customer_num.first_name }} {{ customer_num.last_name }}</strong></h5>
-        <p class="card-text">{{ customer_num.contact }}<br/>{{ customer_num.email }}<br/></p>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"><strong>{{ customer_num.first_name }} {{ customer_num.last_name }}</strong></h5>
+            <p class="card-text">{{ customer_num.contact }}<br/>{{ customer_num.email }}<br/></p>
+        </div>
     </div>
-</div>
 
-<br/>
+    <br/>
 
-<form method="get">
-  {{ myFilters.form }}
-  <button class="btn btn-primary me-1" type="submit">Search</button>
-  <a href="{% url 'add_OrderDetails' %}" class="btn btn-success">Add Order</a>
-</form>
+    <form method="get">
+    {{ myFilters.form }}
+    <button class="btn btn-primary me-1" type="submit">Search</button>
+    <a href="{% url 'add_OrderDetails' %}" class="btn btn-success">Add Order</a>
+    </form>
 
-<div style="margin-top: 20px;">
-<table class="table table-bordered table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th scope="col">Order#</th>
-            <th scope="col">Status</th>
-            <th scope="col">Date</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for order_Detail in order_Details %}
-        <tr>
-            <td><a href="{% url 'order_Details' order_Detail.id %}">{{ order_Detail.id }}</a></td>
-            <td>{{ order_Detail.status }}</td>
-            <td>{{ order_Detail.created_at }}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
-</div>
+    <div style="margin-top: 20px;">
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Order#</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order_Detail in order_Details %}
+            <tr>
+                <td><a href="{% url 'order_Details' order_Detail.id %}">{{ order_Detail.id }}</a></td>
+                <td>{{ order_Detail.status }}</td>
+                <td>{{ order_Detail.created_at }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
 
 {% endblock %}

@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     {% if user.is_authenticated %}
-
+    <script src="{% static 'js/voice-prompts.js' %}" defer></script>
     <h1 class="text-center">Order Details</h1>
     {% include 'status.html' %}
     <form method="get">
