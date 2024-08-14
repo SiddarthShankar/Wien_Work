@@ -26,6 +26,10 @@
                     <a class="nav-link" href="{% url 'about' %}">About</a>
                 </li>
             </ul>
+            <div class="d-flex ms-auto">
+                <a href="{% url 'increase_font_size' %}" class="btn btn-outline-light me-2">A+</a>
+                <a href="{% url 'decrease_font_size' %}" class="btn btn-outline-light">A-</a>
+            </div>
         </div>
     </div>
 </nav>

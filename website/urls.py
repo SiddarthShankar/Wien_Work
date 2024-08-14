@@ -17,4 +17,6 @@ urlpatterns = [
     path('update_OrderDetails/<int:pk>/', views.update_OrderDetails, name='update_OrderDetails'),  # Corrected pattern
     path('order_Details/<int:pk>', views.order_Details, name = 'order_Details'),
     path('update_order_status/<int:pk>/', views.update_order_status, name='update_order_status'), 
+    path('increase-font-size/', views.increase_font_size, name='increase_font_size'),
+    path('decrease-font-size/', views.decrease_font_size, name='decrease_font_size'),
 ]

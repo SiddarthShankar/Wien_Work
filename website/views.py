@@ -189,3 +189,14 @@ def update_order_status(request, pk):
         messages.error(request, "You must be logged in to update the order status")
         return redirect('home')
     
+def increase_font_size(request):
+    current_size = request.session.get('font_size', 16)
+    new_size = min(current_size + 2, 30)  # Increase by 2px, with a maximum size of 20px
+    request.session['font_size'] = new_size
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def decrease_font_size(request):
+    current_size = request.session.get('font_size', 16)
+    new_size = max(current_size - 2, 12)  # Decrease by 2px, with a minimum size of 12px
+    request.session['font_size'] = new_size
+    return redirect(request.META.get('HTTP_REFERER', '/'))
