@@ -19,4 +19,5 @@ urlpatterns = [
     path('update_order_status/<int:pk>/', views.update_order_status, name='update_order_status'), 
     path('increase-font-size/', views.increase_font_size, name='increase_font_size'),
     path('decrease-font-size/', views.decrease_font_size, name='decrease_font_size'),
+    path('switch-theme/<str:theme_name>/', views.switch_theme, name='switch_theme'),
 ]

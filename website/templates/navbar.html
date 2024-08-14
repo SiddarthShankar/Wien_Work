@@ -27,6 +27,8 @@
                 </li>
             </ul>
             <div class="d-flex ms-auto">
+                <a href="{% url 'switch_theme' 'light' %}" class="btn btn-outline-light me-2">Light</a>
+                <a href="{% url 'switch_theme' 'dark' %}" class="btn btn-outline-light me-4">Dark</a>
                 <a href="{% url 'increase_font_size' %}" class="btn btn-outline-light me-2">A+</a>
                 <a href="{% url 'decrease_font_size' %}" class="btn btn-outline-light">A-</a>
             </div>

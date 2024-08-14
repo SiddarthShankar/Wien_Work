@@ -200,3 +200,7 @@ def decrease_font_size(request):
     new_size = max(current_size - 2, 12)  # Decrease by 2px, with a minimum size of 12px
     request.session['font_size'] = new_size
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def switch_theme(request, theme_name):
+    request.session['theme'] = theme_name
+    return redirect(request.META.get('HTTP_REFERER', '/'))

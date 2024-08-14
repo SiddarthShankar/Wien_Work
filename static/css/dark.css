@@ -1,0 +1,13 @@
+body {
+    background-color: #484848;
+    color: #ffffff75;
+}
+
+.navbar {
+    background-color: #343a40; /* Dark background for navbar */
+}
+
+.btn-outline-light {
+    border-color: #ffffff75;
+    color: #ffffff75;
+}
