@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     {% if user.is_authenticated %}
+
     <h1 class="text-center">Order Details</h1>
     {% include 'status.html' %}
     <form method="get">
