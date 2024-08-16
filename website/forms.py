@@ -48,13 +48,17 @@ class AddCustomerRecordForm(forms.ModelForm):
 class AddOrderRecordForm(forms.ModelForm):
     order_num = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Order Number", "class": "form-control"}), label="")
     customer_num = forms.IntegerField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Customer Number", "class": "form-control"}),label="")
-    desciption = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Description", "class": "form-control"}),label="")
+    description = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Description", "class": "form-control"}),label="")
     status = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Status", "class": "form-control"}),label="")
     
     class Meta:
         model = Order
-        fields = '__all__'
-        
+        fields = ['customer_id', 'description', 'status']  # Include fields that match the model
+        widgets = {
+            'customer_id': forms.Select(attrs={"class": "form-control"}),  # Assuming you want a dropdown for customer selection
+            'description': forms.TextInput(attrs={"placeholder": "Description", "class": "form-control"}),
+            'status': forms.Select(attrs={"placeholder": "Status", "class": "form-control"}),  # Use Select widget
+        }
 class OrderStatusForm(forms.ModelForm):
     class Meta:
         model = Order

@@ -147,20 +147,24 @@ def add_OrderDetails(request):
         return render(request, 'add_OrderDetails.html', {'order_form':order_form})
     else:
         messages.success(request, "You must be logged in to add a form")
-        return redirect('home') 
+        return redirect('home')   
     
 def update_OrderDetails(request, pk):
     if request.user.is_authenticated:
         current_detail = get_object_or_404(Order, id=pk)
         order_form = AddOrderRecordForm(request.POST or None, instance=current_detail)
-        if order_form.is_valid():
-            order_form.save() 
-            messages.success(request, "Details have been Updated successfully!!..")
-            return redirect('/') 
-        return render(request, 'update_OrderDetails.html', {'order_form':order_form})
+        if request.method == 'POST':
+            if order_form.is_valid():
+                order_form.save()
+                messages.success(request, "Details have been updated successfully!")
+                return redirect('/')
+            else:
+                # Show errors if form is invalid
+                messages.error(request, "There was an error updating the details. Please check the form for errors.")
+        return render(request, 'update_OrderDetails.html', {'order_form': order_form})
     else:
-        messages.success(request, "You must be logged into access the data")
-        return redirect('home')      
+        messages.error(request, "You must be logged in to access the data")
+        return redirect('home')
     
 def about(request):
     if request.user.is_authenticated:

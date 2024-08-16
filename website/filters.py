@@ -9,4 +9,4 @@ class CustomerFilter(django_filters.FilterSet):
 class OrderFilter(django_filters.FilterSet):
     class Meta:
         model = Order
-        fields = {'status'}
+        fields = ['status']
