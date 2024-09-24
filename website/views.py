@@ -4,8 +4,9 @@ from django.contrib import messages
 from .forms import AddCustomerRecordForm, AddOrderRecordForm, OrderStatusForm
 from .models import Customer, Order
 from .filters import OrderFilter, CustomerFilter
-
-#from .filters import OrderFilter
+from django.utils.translation import gettext as _
+from django.utils import translation
+from django.conf import settings
 
 # Create your views here.
 def home(request):
@@ -19,7 +20,9 @@ def home(request):
     delivered = orders.filter(status='Delivered').count()
     pending = orders.filter(status='Pending').count()
     
-    context = {'orders': orders, 'customers': customers, 'total_orders': total_orders, 'delivered': delivered, 'pending': pending, 'myFilters': myFilters}
+    noOrder = _("Order not found!")
+    
+    context = {'orders': orders, 'customers': customers, 'total_orders': total_orders, 'delivered': delivered, 'pending': pending, 'myFilters': myFilters, 'noOrder': noOrder}
     
     if request.method == 'GET' and 'order_id' in request.GET:
         order_id = request.GET.get('order_id')
@@ -217,3 +220,14 @@ def decrease_font_size(request):
 def switch_theme(request, theme_name):
     request.session['theme'] = theme_name
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def switch_language(request):
+    lang_code = request.GET.get('language', None) 
+    next_url = request.GET.get('next', '/')
+    if lang_code and lang_code in dict(settings.LANGUAGES).keys():
+        translation.activate(lang_code)
+        response = redirect(next_url)
+        response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
+        return response
+    else:
+        return redirect(next_url)

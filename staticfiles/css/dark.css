@@ -5,7 +5,7 @@
 /* Set global font family and colors */
 body {
     font-family: 'Arial', sans-serif; /* Replace with your desired font */
-    color: #333333; /* Default text color */
+    color: #000000; /* Default text color */
     background-color: #064482; /* Background color */
 }
 
@@ -15,18 +15,18 @@ body {
 }
 
 .navbar .nav-link {
-    color: #e90a0a; /* White color for navbar links */
+    color: #cacaca; /* White color for navbar links */
 }
 
 .navbar .nav-link:hover {
-    color: #ffc107; /* Yellow color for hovered links */
+    color: #484848; /* Yellow color for hovered links */
 }
 
 /* Button styles */
 .btn-primary {
     background-color: #007bff; /* Primary button color */
     border-color: #007bff;
-    color: #ffffff;
+    color: #cacaca;
 }
 
 .btn-primary:hover {
@@ -41,7 +41,7 @@ body {
 
 /* Header and footer styles */
 h1, h2, h3, h4, h5, h6 {
-    color: #343a40; /* Dark color for headers */
+    color: #cacaca; /* Dark color for headers */
     font-family: 'Roboto', sans-serif; /* Font for headers */
 }
 
@@ -51,7 +51,7 @@ a {
 }
 
 a:hover {
-    color: #0056b3; /* Darker blue on hover */
+    color: #484848; /* Darker blue on hover */
 }
 
 /* Additional global styles for other elements */
@@ -63,7 +63,7 @@ a:hover {
 /* Body styles from both files */
 body {
     background-color: #484848; /* Dark background color from dark.css */
-    color: #ffffff; /* Text color from dark.css */
+    color: #cacaca; /* Text color from dark.css */
 }
 
 /* #Logo element (from main.css) */
@@ -85,7 +85,7 @@ body {
 
 /* Box styling (from main.css) */
 .box {
-    border: 1px solid #ddd;
+    border: 1px solid #cacaca;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -98,6 +98,17 @@ body {
 
 /* Button styling (from dark.css) */
 .btn-outline-light {
-    border-color: #ffffff75;
-    color: #ffffff75;
+    border-color: #cacaca;
+    color: #cacaca;
 }
+
+.dark-theme table {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+}
+.dark-theme th, .dark-theme td {
+    padding: 10px;
+    border-bottom: 1px solid #555;
+}
+

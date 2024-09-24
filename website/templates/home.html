@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
     {% if user.is_authenticated %}
     <script src="{% static 'js/voice-prompts.js' %}" defer></script>
-    <h1 class="text-center">Order Details</h1>
+    <h1 class="text-center">{% trans "Order Details" %}</h1>
     {% include 'status.html' %}
     <form method="get">
       {{myFilters.form}}
@@ -57,5 +58,6 @@
           </form>
     </div>
     </form>
+  
     {% endif %}
 {% endblock %}
