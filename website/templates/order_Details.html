@@ -1,28 +1,29 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block content %}
 
 <script src="{% static 'js/voice-prompts.js' %}" defer></script>
-<h1 class="text-center">Order Details</h1>
+<h1 class="text-center">{% trans "Order Details" %}</h1>
 <br/>
 
 <div class="d-flex mb-3">
-    <a href="{% url 'delete_OrderDetails' orders.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this order?');">Delete</a>
+    <a href="{% url 'delete_OrderDetails' orders.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this order?');">{% trans "Delete" %}</a>
 </div>
 
 <table class="table table-bordered table-hover">
     <thead class="table-dark">
         <tr>
-            <th scope="col">Description</th>
-            <th scope="col">Status</th>
-            <th scope="col">Action</th>
+            <th scope="col">{% trans "Description" %}</th>
+            <th scope="col">{% trans "Status" %}</th>
+            <th scope="col">{% trans "Action" %}</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{ orders.description }}</td>
             <td>{{ orders.status }}</td>
-            <td><a href="{% url 'update_OrderDetails' orders.id %}" class="btn btn-primary me-1">Update</a></td>
+            <td><a href="{% url 'update_OrderDetails' orders.id %}" class="btn btn-primary me-1">{% trans "Update" %}</a></td>
         </tr>
     </tbody>
 </table>

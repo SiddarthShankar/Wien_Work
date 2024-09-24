@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-24 17:36+0200\n"
+"POT-Creation-Date: 2024-09-24 18:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,11 +34,26 @@ msgstr ""
 "Design und basiert auf den Web Content Accessibility Guidelines und dem "
 "Feedback der Mitarbeiter."
 
-#: website/templates/home.html:7
+#: website/templates/add_CustomerDetails.html:6
+#: website/templates/add_CustomerDetails.html:12
+#: website/templates/navbar.html:24
+msgid "Add Customer"
+msgstr "Kunden hinzufügen"
+
+#: website/templates/add_OrderDetails.html:7
+msgid "Add Order Details"
+msgstr "Bestelldetails"
+
+#: website/templates/add_OrderDetails.html:16
+msgid "Add Details"
+msgstr "Bestelldetails"
+
+#: website/templates/home.html:7 website/templates/order_Details.html:7
 msgid "Order Details"
 msgstr "Bestelldetails"
 
 #: website/templates/home.html:11 website/templates/navbar.html:48
+#: website/templates/order.html:20
 msgid "Search"
 msgstr "Suche"
 
@@ -52,7 +67,7 @@ msgstr "Kunden hinzufügen"
 msgid "Name"
 msgstr "Name"
 
-#: website/templates/home.html:19
+#: website/templates/home.html:19 website/templates/order.html:30
 msgid "Date"
 msgstr "Datum"
 
@@ -80,10 +95,6 @@ msgstr "Ausloggen"
 msgid "Home"
 msgstr "Home"
 
-#: website/templates/navbar.html:24
-msgid "Add Customer"
-msgstr "Kunden hinzufügen"
-
 #: website/templates/navbar.html:31
 msgid "Light"
 msgstr "Licht"
@@ -108,6 +119,63 @@ msgstr "Deutsch"
 msgid "Search Order ID"
 msgstr "Suche nach Bestell-ID"
 
+#: website/templates/order.html:6
+msgid "Customer Order"
+msgstr "Kunden Bestellung"
+
+#: website/templates/order.html:21
+msgid "Add Order"
+msgstr "Bestellung hinzufügen"
+
+#: website/templates/order.html:28
+msgid "Order#"
+msgstr "Bestellungs#"
+
+#: website/templates/order.html:29 website/templates/order_Details.html:18
+msgid "Status"
+msgstr "Status"
+
+#: website/templates/order_Details.html:11
+msgid "Delete"
+msgstr "Löschen"
+
+#: website/templates/order_Details.html:17
+msgid "Description"
+msgstr "Beschreibung"
+
+#: website/templates/order_Details.html:19
+msgid "Action"
+msgstr "Aktion"
+
+#: website/templates/order_Details.html:26
+msgid "Update"
+msgstr "Aktualisieren"
+
+#: website/templates/status.html:11
+msgid "Total Orders"
+msgstr "Bestellungen gesamt"
+
+#: website/templates/status.html:24
+msgid "Orders Delivered"
+msgstr "Ausgelieferte Bestellungen"
+
+#: website/templates/status.html:37
+msgid "Orders Pending"
+msgstr "Ausstehende Bestellungen"
+
+#: website/templates/update_OrderDetails.html:6
+msgid "Update Details"
+msgstr "Bestelldetails aktualisieren"
+
+#: website/templates/update_OrderDetails.html:13
+msgid "Update Order Details"
+msgstr "Bestelldetails aktualisieren"
+
 #: website/views.py:23
 msgid "Order not found!"
 msgstr "Bestellung nicht gefunden!"
+
+#, fuzzy
+#~| msgid "Add Customer"
+#~ msgid "Add Customers"
+#~ msgstr "Kunden hinzufügen"

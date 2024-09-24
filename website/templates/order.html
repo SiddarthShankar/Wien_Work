@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block content %}
     <script src="{% static 'js/voice-prompts.js' %}" defer></script>
-    <h1 class="text-center">Customer Orders</h1>
+    <h1 class="text-center">{% trans "Customer Order" %}</h1>
     <br/>
 
     <div class="card" style="width: 18rem;">
@@ -16,17 +17,17 @@
 
     <form method="get">
     {{ myFilters.form }}
-    <button class="btn btn-primary me-1" type="submit">Search</button>
-    <a href="{% url 'add_OrderDetails' %}" class="btn btn-success">Add Order</a>
+    <button class="btn btn-primary me-1" type="submit">{% trans "Search" %}</button>
+    <a href="{% url 'add_OrderDetails' %}" class="btn btn-success">{% trans "Add Order" %}</a>
     </form>
 
     <div style="margin-top: 20px;">
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
             <tr>
-                <th scope="col">Order#</th>
-                <th scope="col">Status</th>
-                <th scope="col">Date</th>
+                <th scope="col">{% trans "Order#" %}</th>
+                <th scope="col">{% trans "Status" %}</th>
+                <th scope="col">{% trans "Date" %}</th>
             </tr>
         </thead>
         <tbody>
