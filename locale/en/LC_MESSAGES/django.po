@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-24 16:54+0200\n"
+"POT-Creation-Date: 2024-09-24 17:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: website/templates/about.html:7 website/templates/navbar.html:27
+msgid "About"
+msgstr "About"
+
+#: website/templates/about.html:13
+msgid ""
+"The website is a part of the thesis work being carried out at Wien Work, in "
+"order to improve inclusive UI designs. The UI involves User Cenetered Design "
+"and is based on the Web Content Accessability Guideline and feedbacks from "
+"the workers."
+msgstr ""
+"The website is a part of the thesis work being carried out at Wien Work, in "
+"order to improve inclusive UI designs. The UI involves User Cenetered Design "
+"and is based on the Web Content Accessability Guideline and feedbacks from "
+"the workers."
+
 #: website/templates/home.html:7
 msgid "Order Details"
 msgstr "Order Details"
+
+#: website/templates/home.html:11 website/templates/navbar.html:48
+msgid "Search"
+msgstr "Search"
+
+#: website/templates/home.html:17
+#, fuzzy
+#| msgid "Add Customer"
+msgid "Customer#"
+msgstr "Add Customer"
+
+#: website/templates/home.html:18
+msgid "Name"
+msgstr "Name"
+
+#: website/templates/home.html:19
+msgid "Date"
+msgstr "Date"
+
+#: website/templates/home.html:39
+msgid "Login"
+msgstr "Login"
+
+#: website/templates/home.html:47
+msgid "User Name"
+msgstr "User Name"
+
+#: website/templates/home.html:52
+msgid "Password"
+msgstr "Password"
+
+#: website/templates/home.html:57
+msgid "Submit"
+msgstr "Submit"
 
 #: website/templates/navbar.html:16
 msgid "Logout"
@@ -33,10 +83,6 @@ msgstr "Home"
 #: website/templates/navbar.html:24
 msgid "Add Customer"
 msgstr "Add Customer"
-
-#: website/templates/navbar.html:27
-msgid "About"
-msgstr "About"
 
 #: website/templates/navbar.html:31
 msgid "Light"
@@ -61,10 +107,6 @@ msgstr "German"
 #: website/templates/navbar.html:47
 msgid "Search Order ID"
 msgstr "Search Order ID"
-
-#: website/templates/navbar.html:48
-msgid "Search"
-msgstr "Search"
 
 #: website/views.py:23
 msgid "Order not found!"
