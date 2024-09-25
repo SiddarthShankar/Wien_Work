@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-24 18:16+0200\n"
+"POT-Creation-Date: 2024-09-25 16:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr "Bestelldetails"
 msgid "Order Details"
 msgstr "Bestelldetails"
 
-#: website/templates/home.html:11 website/templates/navbar.html:48
+#: website/templates/home.html:11 website/templates/navbar.html:59
 #: website/templates/order.html:20
 msgid "Search"
 msgstr "Suche"
@@ -95,27 +95,31 @@ msgstr "Ausloggen"
 msgid "Home"
 msgstr "Home"
 
-#: website/templates/navbar.html:31
+#: website/templates/navbar.html:40
 msgid "Light"
 msgstr "Licht"
 
-#: website/templates/navbar.html:32
+#: website/templates/navbar.html:41
 msgid "Dark"
 msgstr "Dunkel"
 
-#: website/templates/navbar.html:36
+#: website/templates/navbar.html:45
 msgid "Speak"
 msgstr "Sprechen"
 
-#: website/templates/navbar.html:39
+#: website/templates/navbar.html:49
+msgid "Language"
+msgstr "Sprache"
+
+#: website/templates/navbar.html:52
 msgid "English"
 msgstr "Englisch"
 
-#: website/templates/navbar.html:43
+#: website/templates/navbar.html:53
 msgid "German"
 msgstr "Deutsch"
 
-#: website/templates/navbar.html:47
+#: website/templates/navbar.html:58
 msgid "Search Order ID"
 msgstr "Suche nach Bestell-ID"
 
@@ -171,9 +175,72 @@ msgstr "Bestelldetails aktualisieren"
 msgid "Update Order Details"
 msgstr "Bestelldetails aktualisieren"
 
-#: website/views.py:23
+#: website/views.py:32
 msgid "Order not found!"
 msgstr "Bestellung nicht gefunden!"
+
+#: website/views.py:42
+msgid "You have been successfully logged in!!!!...."
+msgstr "Sie wurden erfolgreich angemeldet!!!!...."
+
+#: website/views.py:45
+msgid "An error occured, please try again!!...."
+msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut!! ...."
+
+#: website/views.py:55
+msgid "You have been successfully Logged Out!!...."
+msgstr "Sie wurden erfolgreich abgemeldet!!...."
+
+#: website/views.py:78 website/views.py:91 website/views.py:101
+#: website/views.py:127 website/views.py:137 website/views.py:174
+msgid "You must be logged into access the data"
+msgstr "Sie müssen angemeldet sein, um auf die Daten zugreifen zu können"
+
+#: website/views.py:98 website/views.py:134
+msgid "Details have been deleted successfully!!.."
+msgstr "Details wurden erfolgreich gelöscht!!.."
+
+#: website/views.py:110 website/views.py:146
+msgid "Details added successfully!!..."
+msgstr "Details erfolgreich hinzugefügt!!..."
+
+#: website/views.py:114 website/views.py:150
+msgid "You must be logged in to add a form"
+msgstr "Sie müssen angemeldet sein, um ein Formular hinzuzufügen"
+
+#: website/views.py:123
+msgid "Details have been Updated successfully!!.."
+msgstr "Die Details wurden erfolgreich aktualisiert!!.."
+
+#: website/views.py:160
+msgid "Details have been updated successfully!"
+msgstr "Details wurden erfolgreich aktualisiert!"
+
+#: website/views.py:164
+msgid ""
+"There was an error updating the details. Please check the form for errors."
+msgstr ""
+"Beim Aktualisieren der Angaben ist ein Fehler aufgetreten. Bitte überprüfen Sie das Formular auf Fehler."
+
+#: website/views.py:167
+msgid "You must be logged in to access the data"
+msgstr "Sie müssen eingeloggt sein, um auf die Daten zugreifen zu können"
+
+#: website/views.py:188
+msgid "You must be logged in to view this order"
+msgstr "Sie müssen angemeldet sein, um diese Bestellung anzuzeigen"
+
+#: website/views.py:198
+msgid "Order status updated successfully!"
+msgstr "Bestellstatus erfolgreich aktualisiert!"
+
+#: website/views.py:200
+msgid "Failed to update order status. Please try again."
+msgstr "Aktualisierung des Bestellstatus fehlgeschlagen. Bitte versuchen Sie es erneut."
+
+#: website/views.py:203
+msgid "You must be logged in to update the order status"
+msgstr "Sie müssen angemeldet sein, um den Bestellstatus zu aktualisieren"
 
 #, fuzzy
 #~| msgid "Add Customer"

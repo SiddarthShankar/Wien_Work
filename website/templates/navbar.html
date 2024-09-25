@@ -13,36 +13,47 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">{% trans "Logout" %}</a>
+                        <a class="btn btn-outline-light me-2" href="{% url 'logout' %}">{% trans "Logout" %}</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
+                        <a class="btn btn-outline-light me-2" href="{% url 'home' %}">{% trans "Home" %}</a>
                     </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add_CustomerDetails' %}">{% trans "Add Customer" %}</a>
+                    <a class="btn btn-outline-light me-2" href="{% url 'add_CustomerDetails' %}">{% trans "Add Customer" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'about' %}">{% trans "About" %}</a>
+                    <a class="btn btn-outline-light me-2" href="{% url 'about' %}">{% trans "About" %}</a>
                 </li>
             </ul>
             <div class="d-flex ms-auto">
-                <a href="{% url 'switch_theme' 'light' %}" class="btn btn-outline-light me-2">{% trans "Light" %}</a>
-                <a href="{% url 'switch_theme' 'dark' %}" class="btn btn-outline-light me-4">{% trans "Dark" %}</a>
                 <a href="{% url 'increase_font_size' %}" class="btn btn-outline-light me-2">A+</a>
                 <a href="{% url 'decrease_font_size' %}" class="btn btn-outline-light me-4">A-</a>       
             </div>
+            <div class="navbar-right">
+                <div class="nav-item dropdown">
+                    <a class="btn btn-outline-light dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span role="img" aria-label="Brightness" class="me-2">&#x1F506;</span> <!-- Brightness symbol -->
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'switch_theme' 'light' %}" class="btn btn-outline-dark">{% trans "Light" %}</a>
+                        <li><a class="dropdown-item" href="{% url 'switch_theme' 'dark' %}" class="btn btn-outline-dark">{% trans "Dark" %}</a>
+                    </ul>
+                </div>
+            </div>
             <button id="speakButton" class="btn btn-outline-light me-2">{% trans "Speak" %}</button>
             <div class="navbar-right">
-                {% if LANGUAGE_CODE != 'en-us' %}
-                    <a href="{% url 'switch_language' %}?language=en-us&next={{ request.path }}" class="btn btn-outline-light">{% trans "English" %}</a>
-                {% endif %}
-                
-                {% if LANGUAGE_CODE != 'de' %}
-                    <a href="{% url 'switch_language' %}?language=de&next={{ request.path }}" class="btn btn-outline-light me-2">{% trans "German" %}</a>
-                {% endif %}
-            </div>
+                <div class="nav-item dropdown">
+                    <a class="btn btn-outline-light dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% trans "Language" %}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'switch_language' %}?language=en-us&next={{ request.path }}" class="btn btn-outline-light">{% trans "English" %}</a></li>
+                        <li><a class="dropdown-item" href="{% url 'switch_language' %}?language=de&next={{ request.path }}" class="btn btn-outline-light">{% trans "German" %}</a></li>
+                    </ul>
+                </div>
+            </div>            
             <form method="GET" action="{% url 'home' %}" class="d-flex">
                 <input type="text" name="order_id" class="form-control me-2" placeholder="{% trans 'Search Order ID' %}" style="max-width: 300px;">
                 <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>

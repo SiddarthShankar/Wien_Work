@@ -20,9 +20,7 @@ def home(request):
     delivered = orders.filter(status='Delivered').count()
     pending = orders.filter(status='Pending').count()
     
-    noOrder = _("Order not found!")
-    
-    context = {'orders': orders, 'customers': customers, 'total_orders': total_orders, 'delivered': delivered, 'pending': pending, 'myFilters': myFilters, 'noOrder': noOrder}
+    context = {'orders': orders, 'customers': customers, 'total_orders': total_orders, 'delivered': delivered, 'pending': pending, 'myFilters': myFilters}
     
     if request.method == 'GET' and 'order_id' in request.GET:
         order_id = request.GET.get('order_id')
@@ -31,7 +29,7 @@ def home(request):
                 order = Order.objects.get(id=order_id)
                 return redirect('order_Details', pk=order.id)
             except Order.DoesNotExist:
-                messages.error(request, "Order not found!")
+                messages.error(request, _("Order not found!"))
     
     #check to see if logging in 
     if request.method == 'POST':
@@ -41,10 +39,10 @@ def home(request):
         user = authenticate(request, username = username, password = password)
         if user is not None:
             login(request, user)
-            messages.success(request, "You have been successfully logged in!!!!....")
+            messages.success(request, _("You have been successfully logged in!!!!...."))
             return redirect('home')
         else:
-            messages.success(request, "An error occured, please try again!!....")
+            messages.success(request, _("An error occured, please try again!!...."))
             return redirect('home')
     else:   
         return render(request, 'home.html', context)
@@ -54,7 +52,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    messages.success(request, "You have been successfully Logged Out!!....")
+    messages.success(request, _("You have been successfully Logged Out!!...."))
     return redirect('home')
 
 def customer_order(request, pk):
@@ -77,7 +75,7 @@ def customer_order(request, pk):
         }
         return render(request, 'order.html', context)
     else:
-        messages.success(request, "You must be logged into access the data")
+        messages.success(request, _("You must be logged into access the data"))
         return redirect('home')
 
 def customer_num(request, pk):
@@ -90,17 +88,17 @@ def customer_num(request, pk):
         }
         return render(request, 'customer.html', context)
     else:
-        messages.success(request, "You must be logged into access the data")
+        messages.success(request, _("You must be logged into access the data"))
         return redirect('home') 
    
 def delete_CustomerDetails(request, pk):
     if request.user.is_authenticated:
         delete_detail = Customer.objects.get(id=pk)
         delete_detail.delete()
-        messages.success(request, "Details have been deleted successfully!!..")
+        messages.success(request, _("Details have been deleted successfully!!.."))
         return redirect('home') 
     else:
-        messages.success(request, "You must be logged into access the data")
+        messages.success(request, _("You must be logged into access the data"))
         return redirect('home') 
 
 def add_CustomerDetails(request):
@@ -109,11 +107,11 @@ def add_CustomerDetails(request):
         if request.method == "POST":
             if customer_form.is_valid():
                 add_details = customer_form.save()
-                messages.success(request, "Details added successfully!!...")
+                messages.success(request, _("Details added successfully!!..."))
                 return redirect('home')
         return render(request, 'add_CustomerDetails.html', {'customer_form':customer_form})
     else:
-        messages.success(request, "You must be logged in to add a form")
+        messages.success(request, _("You must be logged in to add a form"))
         return redirect('home') 
     
 def update_CustomerDetails(request, pk):
@@ -122,21 +120,21 @@ def update_CustomerDetails(request, pk):
         customer_form = AddCustomerRecordForm(request.POST or None, instance=current_detail)
         if customer_form.is_valid():
             customer_form.save() 
-            messages.success(request, "Details have been Updated successfully!!..")
+            messages.success(request, _("Details have been Updated successfully!!.."))
             return redirect('home') 
         return render(request, 'update_CustomerDetails.html', {'customer_form':customer_form})
     else:
-        messages.success(request, "You must be logged into access the data")
+        messages.success(request, _("You must be logged into access the data"))
         return redirect('home') 
 
 def delete_OrderDetails(request, pk):
     if request.user.is_authenticated:
         delete_order = get_object_or_404(Order, id=pk)
         delete_order.delete()
-        messages.success(request, "Details have been deleted successfully!!..")
+        messages.success(request, _("Details have been deleted successfully!!.."))
         return redirect('home') 
     else:
-        messages.success(request, "You must be logged into access the data")
+        messages.success(request, _("You must be logged into access the data"))
         return redirect('home') 
 
 def add_OrderDetails(request):
@@ -145,11 +143,11 @@ def add_OrderDetails(request):
         if request.method == "POST":
             if order_form.is_valid():
                 order_form.save()
-                messages.success(request, "Details added successfully!!...")
+                messages.success(request, _("Details added successfully!!..."))
                 return redirect('/')
         return render(request, 'add_OrderDetails.html', {'order_form':order_form})
     else:
-        messages.success(request, "You must be logged in to add a form")
+        messages.success(request, _("You must be logged in to add a form"))
         return redirect('home')   
     
 def update_OrderDetails(request, pk):
@@ -159,21 +157,21 @@ def update_OrderDetails(request, pk):
         if request.method == 'POST':
             if order_form.is_valid():
                 order_form.save()
-                messages.success(request, "Details have been updated successfully!")
+                messages.success(request, _("Details have been updated successfully!"))
                 return redirect('/')
             else:
                 # Show errors if form is invalid
-                messages.error(request, "There was an error updating the details. Please check the form for errors.")
+                messages.error(request, _("There was an error updating the details. Please check the form for errors."))
         return render(request, 'update_OrderDetails.html', {'order_form': order_form})
     else:
-        messages.error(request, "You must be logged in to access the data")
+        messages.error(request, _("You must be logged in to access the data"))
         return redirect('home')
     
 def about(request):
     if request.user.is_authenticated:
         return render(request, 'about.html', {'about':about})
     else:
-        messages.success(request, "You must be logged into access the data")
+        messages.success(request, _("You must be logged into access the data"))
         return redirect('home') 
     
 def order_Details(request, pk):
@@ -187,7 +185,7 @@ def order_Details(request, pk):
         }
         return render(request, 'order_Details.html', context)
     else:
-        messages.success(request, "You must be logged in to view this order")
+        messages.success(request, _("You must be logged in to view this order"))
         return redirect('home') 
     
 def update_order_status(request, pk):
@@ -197,12 +195,12 @@ def update_order_status(request, pk):
             form = OrderStatusForm(request.POST, instance=order)
             if form.is_valid():
                 form.save()
-                messages.success(request, "Order status updated successfully!")
+                messages.success(request, _("Order status updated successfully!"))
             else:
-                messages.error(request, "Failed to update order status. Please try again.")
+                messages.error(request, _("Failed to update order status. Please try again."))
         return redirect('customer_order', pk=order.customer_id.id)
     else:
-        messages.error(request, "You must be logged in to update the order status")
+        messages.error(request, _("You must be logged in to update the order status"))
         return redirect('home')
     
 def increase_font_size(request):

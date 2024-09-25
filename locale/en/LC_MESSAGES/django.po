@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-24 18:16+0200\n"
+"POT-Creation-Date: 2024-09-25 16:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr "Add Details"
 msgid "Order Details"
 msgstr "Order Details"
 
-#: website/templates/home.html:11 website/templates/navbar.html:48
+#: website/templates/home.html:11 website/templates/navbar.html:59
 #: website/templates/order.html:20
 msgid "Search"
 msgstr "Search"
@@ -95,27 +95,31 @@ msgstr "Logout"
 msgid "Home"
 msgstr "Home"
 
-#: website/templates/navbar.html:31
+#: website/templates/navbar.html:40
 msgid "Light"
 msgstr "Light"
 
-#: website/templates/navbar.html:32
+#: website/templates/navbar.html:41
 msgid "Dark"
 msgstr "Dark"
 
-#: website/templates/navbar.html:36
+#: website/templates/navbar.html:45
 msgid "Speak"
 msgstr "Speak"
 
-#: website/templates/navbar.html:39
+#: website/templates/navbar.html:49
+msgid "Language"
+msgstr "Language"
+
+#: website/templates/navbar.html:52
 msgid "English"
 msgstr "English"
 
-#: website/templates/navbar.html:43
+#: website/templates/navbar.html:53
 msgid "German"
 msgstr "German"
 
-#: website/templates/navbar.html:47
+#: website/templates/navbar.html:58
 msgid "Search Order ID"
 msgstr "Search Order ID"
 
@@ -183,9 +187,72 @@ msgstr "Order Details"
 msgid "Update Order Details"
 msgstr "Add Order Details"
 
-#: website/views.py:23
+#: website/views.py:32
 msgid "Order not found!"
 msgstr "Order not found!"
+
+#: website/views.py:42
+msgid "You have been successfully logged in!!!!...."
+msgstr "You have been successfully logged in!!!!...."
+
+#: website/views.py:45
+msgid "An error occured, please try again!!...."
+msgstr "An error occured, please try again!!...."
+
+#: website/views.py:55
+msgid "You have been successfully Logged Out!!...."
+msgstr "You have been successfully Logged Out!!...."
+
+#: website/views.py:78 website/views.py:91 website/views.py:101
+#: website/views.py:127 website/views.py:137 website/views.py:174
+msgid "You must be logged into access the data"
+msgstr "You must be logged into access the data"
+
+#: website/views.py:98 website/views.py:134
+msgid "Details have been deleted successfully!!.."
+msgstr "Details have been deleted successfully!!.."
+
+#: website/views.py:110 website/views.py:146
+msgid "Details added successfully!!..."
+msgstr "Details added successfully!!..."
+
+#: website/views.py:114 website/views.py:150
+msgid "You must be logged in to add a form"
+msgstr "You must be logged in to add a form"
+
+#: website/views.py:123
+msgid "Details have been Updated successfully!!.."
+msgstr "Details have been Updated successfully!!.."
+
+#: website/views.py:160
+msgid "Details have been updated successfully!"
+msgstr "Details have been updated successfully!"
+
+#: website/views.py:164
+msgid ""
+"There was an error updating the details. Please check the form for errors."
+msgstr ""
+"There was an error updating the details. Please check the form for errors."
+
+#: website/views.py:167
+msgid "You must be logged in to access the data"
+msgstr "You must be logged in to access the data"
+
+#: website/views.py:188
+msgid "You must be logged in to view this order"
+msgstr "You must be logged in to view this order"
+
+#: website/views.py:198
+msgid "Order status updated successfully!"
+msgstr "Order status updated successfully!"
+
+#: website/views.py:200
+msgid "Failed to update order status. Please try again."
+msgstr "Failed to update order status. Please try again"
+
+#: website/views.py:203
+msgid "You must be logged in to update the order status"
+msgstr "You must be logged in to update the order status"
 
 #, fuzzy
 #~| msgid "Add Customer"
