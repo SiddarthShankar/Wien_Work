@@ -1,5 +1,8 @@
 {% load static %}
 {% load i18n %} 
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -49,9 +52,9 @@
                         {% trans "Language" %}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'switch_language' %}?language=en-us&next={{ request.path }}" class="btn btn-outline-light">{% trans "English" %}</a></li>
-                        <li><a class="dropdown-item" href="{% url 'switch_language' %}?language=de&next={{ request.path }}" class="btn btn-outline-light">{% trans "German" %}</a></li>
-                    </ul>
+                        <li><a class="dropdown-item {% if LANGUAGE_CODE == 'en-us' %} active {% endif %}" href="{% url 'switch_language' %}?language=en-us&next={{ request.path }}">{% trans "English" %}</a></li>
+                        <li><a class="dropdown-item {% if LANGUAGE_CODE == 'de' %} active {% endif %}" href="{% url 'switch_language' %}?language=de&next={{ request.path }}">{% trans "German" %}</a></li>
+                    </ul>                    
                 </div>
             </div>            
             <form method="GET" action="{% url 'home' %}" class="d-flex">

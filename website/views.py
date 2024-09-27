@@ -7,6 +7,9 @@ from .filters import OrderFilter, CustomerFilter
 from django.utils.translation import gettext as _
 from django.utils import translation
 from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def home(request):
@@ -226,6 +229,8 @@ def switch_language(request):
         translation.activate(lang_code)
         response = redirect(next_url)
         response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
+        logger.info(f"Language switched to {lang_code}")
         return response
     else:
+        logger.warning(f"Invalid language code: {lang_code}")
         return redirect(next_url)
