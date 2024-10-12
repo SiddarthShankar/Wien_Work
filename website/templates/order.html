@@ -3,13 +3,13 @@
 {% load static %}
 {% block content %}
     <script src="{% static 'js/voice-prompts.js' %}" defer></script>
-    <h1 class="text-center">{% trans "Customer Order" %}</h1>
+    <h1 class="text-center">{% trans "Customer Orders" %}</h1>
     <br/>
 
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title"><strong>{{ customer_num.first_name }} {{ customer_num.last_name }}</strong></h5>
-            <p class="card-text">{{ customer_num.contact }}<br/>{{ customer_num.email }}<br/></p>
+            <h5 class="card-title"><strong>{{ customer_order.first_name }} {{ customer_order.last_name }}</strong></h5>
+            <p class="card-text">{{ customer_order.contact }}<br/>{{ customer_order.email }}<br/></p>
         </div>
     </div>
 

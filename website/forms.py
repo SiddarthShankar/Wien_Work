@@ -33,36 +33,39 @@ def __init__(self, *args, **kwargs):
 
 # Create Add Customer Record Form
 class AddCustomerRecordForm(forms.ModelForm):
-    order_num = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Order Number", "class": "form-control"}), label="")
-    customer_num = forms.IntegerField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Customer Number", "class": "form-control"}),label="")
-    first_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class": "form-control"}),label="")
-    last_name = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Last Name", "class": "form-control"}),label="")
-    email = forms.EmailField(required=True,widget=forms.widgets.EmailInput(attrs={"placeholder": "Email", "class": "form-control"}),label="")
-    contact = forms.CharField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Contact", "class": "form-control"}),label="")
+    order_num = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"placeholder": "Order Number", "class": "form-control"}), label="")
+    customer_num = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"placeholder": "Customer Number", "class": "form-control"}), label="")
+    first_name = forms.CharField(required=True, widget=forms.TextInput(attrs={"placeholder": "First Name", "class": "form-control"}), label="")
+    last_name = forms.CharField(required=True, widget=forms.TextInput(attrs={"placeholder": "Last Name", "class": "form-control"}), label="")
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"}), label="")
+    contact = forms.CharField(required=True, widget=forms.TextInput(attrs={"placeholder": "Contact", "class": "form-control"}), label="")
 
     class Meta:
         model = Customer
         exclude = ("user",)
 
-# Create Add Record Form
+# Create Add Order Record Form
 class AddOrderRecordForm(forms.ModelForm):
-    order_num = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Order Number", "class": "form-control"}), label="")
-    customer_num = forms.IntegerField(required=True,widget=forms.widgets.TextInput(attrs={"placeholder": "Customer Number", "class": "form-control"}),label="")
-    description = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Description", "class": "form-control"}),label="")
-    status = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Status", "class": "form-control"}),label="")
-    
     class Meta:
         model = Order
-        fields = ['customer_id', 'description', 'status']  # Include fields that match the model
+        fields = ['customer_num', 'description', 'status']
         widgets = {
-            'customer_id': forms.Select(attrs={"class": "form-control"}),  # Assuming you want a dropdown for customer selection
-            'description': forms.TextInput(attrs={"placeholder": "Description", "class": "form-control"}),
-            'status': forms.Select(attrs={"placeholder": "Status", "class": "form-control"}),  # Use Select widget
+            'customer_num': forms.Select(attrs={"class": "form-control"}),  # No placeholder for select fields
+            'description': forms.TextInput(attrs={"placeholder": "Description", "class": "form-control"}),  # Placeholder is valid here
+            'status': forms.Select(attrs={"class": "form-control"}),  # No placeholder for select fields
         }
+    
+    def __init__(self, *args, **kwargs):
+        super(AddOrderRecordForm, self).__init__(*args, **kwargs)
+        # Add an empty label as a placeholder option for select fields
+        self.fields['customer_num'].empty_label = "Select a customer"
+        self.fields['status'].choices = [('', 'Status')] + list(self.fields['status'].choices)
+
+
 class OrderStatusForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['status',]
+        fields = ['status']
         widgets = {
             'status': forms.Select(attrs={'class': 'form-control'}),
         }

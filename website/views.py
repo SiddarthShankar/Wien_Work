@@ -33,7 +33,7 @@ def home(request):
                 return redirect('order_Details', pk=order.id)
             except Order.DoesNotExist:
                 messages.error(request, _("Order not found!"))
-    
+                
     #check to see if logging in 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -63,14 +63,12 @@ def customer_order(request, pk):
         # Look up records
         orders = Order.objects.all()
         customer_order = Customer.objects.get(id=pk)
-        customer_num = Customer.objects.get(id=pk)
-        order_Details = Order.objects.filter(customer_id=pk)
+        order_Details = Order.objects.filter(customer_num=customer_order.id)
         
-        myFilters = OrderFilter(request.GET, queryset=orders)
+        myFilters = OrderFilter(request.GET, queryset=order_Details)
         orders = myFilters.qs
         
         context = {
-            'customer_num':customer_num,
             'order_Details': order_Details,
             'customer_order': customer_order,
             'orders': orders,
@@ -84,7 +82,7 @@ def customer_order(request, pk):
 def customer_num(request, pk):
     if request.user.is_authenticated:
         customer_num = Customer.objects.get(id=pk)
-        order_Details = Order.objects.filter(customer_id=pk)
+        order_Details = Order.objects.filter(customer_num=pk)
         context = {
             'customer_num':customer_num,
             'order_Details': order_Details,
@@ -181,7 +179,7 @@ def order_Details(request, pk):
     if request.user.is_authenticated:
         # Look up records
         orders = get_object_or_404(Order, id=pk)
-        customer = orders.customer_id  # Correct attribute name
+        customer = orders.customer_num # Correct attribute name
         context = {
             'customer': customer,
             'orders': orders,
@@ -201,7 +199,7 @@ def update_order_status(request, pk):
                 messages.success(request, _("Order status updated successfully!"))
             else:
                 messages.error(request, _("Failed to update order status. Please try again."))
-        return redirect('customer_order', pk=order.customer_id.id)
+        return redirect('customer_order', pk=order.customer_num.id)
     else:
         messages.error(request, _("You must be logged in to update the order status"))
         return redirect('home')

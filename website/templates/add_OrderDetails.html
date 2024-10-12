@@ -9,11 +9,10 @@
 
 <form action="{% url 'add_OrderDetails' %}" method="POST">
     {% csrf_token %}
-    {{ order_form.order_num }}<br/>
     {{ order_form.customer_num }}<br/>
     {{ order_form.description }}<br/>
     {{ order_form.status }}<br/>
-    <button type="submit" class="btn btn-primary">{% trans "Add Details" %}</button>
+    <button type="submit" class="btn btn-primary">{% trans "Add Details"%}</button>
 </form>
 </div>
 {% endblock %}
